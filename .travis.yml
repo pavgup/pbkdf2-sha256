@@ -60,9 +60,8 @@ before_install:
   - cd afl-latest/*/ && make && sudo make install && cd ../.. && ls -lta && pwd
 install:
   # Linux prerequisite steps 
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq update -y; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq install build-essential libgtest-dev libssl-dev lcov ggcov gdb unzip -y; fi
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq install doxygen -y; fi
+  - sudo apt-get -qq update -y; fi
+  - sudo apt-get install build-essential libgtest-dev libssl-dev lcov ggcov gdb unzip doxygen -y
 before_script:
   - sudo apt-get install re2c -y -qq
   - sudo pip install cpp-coveralls
