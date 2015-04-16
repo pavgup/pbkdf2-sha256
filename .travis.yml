@@ -19,7 +19,6 @@ matrix:
     - compiler: afl-g++
       env: REAL_CC=afl-gcc   REAL_CXX=g++     PACKAGE=g++-4.9   SUPPORT=gcc-4.9
 notifications:
-notifications:
   email:
     recipients:
       - pg8p@virginia.edu
@@ -62,7 +61,7 @@ install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq update; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq install build-essential libgtest-dev libssl-dev lcov ggcov gdb unzip; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq install doxygen; fi
-before_install:
+before_script:
   - sudo pip install cpp-coveralls
   - CFLAGS=-coverage LDFLAGS=-coverage ./configure.py --debug
   - ./ninja -t clean ninja_test && ./ninja ninja_test
