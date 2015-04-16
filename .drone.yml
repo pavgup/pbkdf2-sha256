@@ -1,3 +1,6 @@
+image: bradrydzewski/ubuntu
+git:
+  path: github.com/pavgup/pbkdf2-sha256
 script:
   - sudo apt-get install re2c -y -qq
   - sudo pip install cpp-coveralls
