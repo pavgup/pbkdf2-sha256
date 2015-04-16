@@ -44,9 +44,9 @@ before_install:
   #new Clang
   - sudo add-apt-repository --yes ppa:h-rayflood/llvm
   # get old gcc, compiler tools only ...
-  - sudo add-apt-repository ppa:h-rayflood/gcc-lower
+  - sudo add-apt-repository --yes ppa:h-rayflood/gcc-lower
   # get new gcc, maybe replace c/c++ runtime !!
-  - sudo add-apt-repository ppa:h-rayflood/gcc-upper
+  - sudo add-apt-repository --yes ppa:h-rayflood/gcc-upper
   - sudo apt-get update -qq
   - sudo apt-get dist-upgrade
   - sudo apt-get install -qq $SUPPORT
