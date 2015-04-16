@@ -18,3 +18,5 @@ completion and Emacs and Vim editing modes, some files in misc/ must be
 copied to appropriate locations.
 
 If you're interested in making changes to Ninja, read HACKING.md first.
+
+Join the chat at https://gitter.im/pavgup/pbkdf2-sha256
