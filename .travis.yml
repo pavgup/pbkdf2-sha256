@@ -60,7 +60,7 @@ before_install:
   - cd afl-latest/*/ && make && sudo make install && cd ../.. && ls -lta && pwd
 install:
   # Linux prerequisite steps 
-  - sudo apt-get -qq update -y; fi
+  - sudo apt-get -qq update -y
   - sudo apt-get install build-essential libgtest-dev libssl-dev lcov ggcov gdb unzip doxygen -y
 before_script:
   - sudo apt-get install re2c -y -qq
