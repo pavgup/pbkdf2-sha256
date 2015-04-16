@@ -1,3 +1,17 @@
+notifications:
+  email:
+    recipients:
+      - pg8p@virginia.edu
+    on_success: always
+    on_failure: always
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/2cbad070c3ec6dd3dff4
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: true     # default: false
+cache:
+  apt: true
 language: cpp
 compiler:
   - gcc
