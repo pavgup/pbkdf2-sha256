@@ -11,11 +11,14 @@ matrix:
     - compiler: clang
       env: REAL_CC=clang-3.5 REAL_CXX=clang++-3.5 PACKAGE=clang-3.5 SUPPORT=g++-4.8 
     - compiler: gcc
-      env: REAL_CC=gcc-4.7   REAL_CXX=g++-4.7     PACKAGE=g++-4.7   SUPPORT=
+      env: REAL_CC=gcc-4.7   REAL_CXX=g++-4.7     PACKAGE=g++-4.7   SUPPORT=gcc-4.7
     - compiler: gcc
-      env: REAL_CC=gcc-4.8   REAL_CXX=g++-4.8     PACKAGE=g++-4.8   SUPPORT=
+      env: REAL_CC=gcc-4.8   REAL_CXX=g++-4.8     PACKAGE=g++-4.8   SUPPORT=gcc-4.8
     - compiler: gcc
-      env: REAL_CC=gcc-4.9   REAL_CXX=g++-4.9     PACKAGE=g++-4.9   SUPPORT=
+      env: REAL_CC=gcc-4.9   REAL_CXX=g++-4.9     PACKAGE=g++-4.9   SUPPORT=gcc-4.9
+    - compiler: afl-g++
+      env: REAL_CC=afl-gcc   REAL_CXX=g++     PACKAGE=g++-4.9   SUPPORT=gcc-4.9
+notifications:
 notifications:
   email:
     recipients:
@@ -51,6 +54,9 @@ before_install:
   - sudo apt-get install -qq $PACKAGE
   - sudo apt-get install -qq cmake yasm libboost1.55-all-dev zlib1g-dev
   - export CC=${REAL_CC} CXX=${REAL_CXX}
+  - wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz
+  - tar -xzf afl-latest.tgz -C afl-latest
+  - cd afl-latest && make && make install
 install:
   # Linux prerequisite steps 
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq update; fi
@@ -64,6 +70,9 @@ before_install:
   - gcov build/*.o   # for coverall-independent coverage
   - coveralls --exclude lib --exclude tests --gcov-options '\-lp' # for coverall-dependent coverage
 script:
-  - unset CFLAGS && unset LDFLAGS && ./configure.py --bootstrap && ./ninja ninja_test && ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots && ./misc/ninja_syntax_test.py
+  - ./configure.py --bootstrap && ./ninja ninja_test && ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots && ./misc/ninja_syntax_test.py
   - ./ninja manual
   - ./ninja doxygen
+  - ninja -t clean -r rules
+  - CFLAGS=-fsanitize=address LDFLAGS=-fsanitize=address ./configure.py
+  - AFL_CXX=`echo CCX` ninja
