@@ -50,7 +50,7 @@ before_install:
   # get new gcc, maybe replace c/c++ runtime !!
   - sudo add-apt-repository --yes ppa:h-rayflood/gcc-upper
   - sudo apt-get update -y -qq
-  - sudo apt-get dist-upgrade -y -qq
+  # - sudo apt-get dist-upgrade -y -qq # Against the rules, apparently, to skip post-install configurations
   - sudo apt-get install -qq $SUPPORT -y
   - sudo apt-get install -qq $PACKAGE -y
   - sudo apt-get install -qq cmake yasm libboost1.55-all-dev zlib1g-dev -y
