@@ -56,7 +56,7 @@ before_install:
   - export CC=${REAL_CC} CXX=${REAL_CXX}
   - wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz
   - tar -xzf afl-latest.tgz -C afl-latest
-  - cd afl-latest && make && make install
+  - cd afl-latest && make && make install && cd .. && ls -lta && pwd
 install:
   # Linux prerequisite steps 
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq update; fi
@@ -65,7 +65,7 @@ install:
 before_install:
   - sudo pip install cpp-coveralls
   - CFLAGS=-coverage LDFLAGS=-coverage ./configure.py --debug
-  - ninja -t clean ninja_test && ninja ninja_test
+  - ./ninja -t clean ninja_test && ./ninja ninja_test
   - ./ninja_test
   - gcov build/*.o   # for coverall-independent coverage
   - coveralls --exclude lib --exclude tests --gcov-options '\-lp' # for coverall-dependent coverage
@@ -73,6 +73,6 @@ script:
   - ./configure.py --bootstrap && ./ninja ninja_test && ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots && ./misc/ninja_syntax_test.py
   - ./ninja manual
   - ./ninja doxygen
-  - ninja -t clean -r rules
+  - ./ninja -t clean -r rules
   - CFLAGS=-fsanitize=address LDFLAGS=-fsanitize=address ./configure.py
-  - AFL_CXX=`echo CCX` ninja
+  - AFL_CXX=`echo CCX` ./ninja
