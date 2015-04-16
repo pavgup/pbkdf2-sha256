@@ -64,6 +64,7 @@ install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq install build-essential libgtest-dev libssl-dev lcov ggcov gdb unzip -y; fi
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq install doxygen -y; fi
 before_script:
+  - sudo apt-get install re2c -y -qq
   - sudo pip install cpp-coveralls
   - CFLAGS=-coverage LDFLAGS=-coverage ./configure.py --debug
   - ./ninja -t clean ninja_test && ./ninja ninja_test
