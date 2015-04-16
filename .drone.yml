@@ -1,0 +1,8 @@
+notify:
+  webhook:
+    urls:
+      - https://webhooks.gitter.im/e/a79a70a6931ff1252344
+    on_success: true
+    on_failure: true
+Your unique webhook url for this service:
+
