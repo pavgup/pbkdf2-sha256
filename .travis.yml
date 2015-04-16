@@ -57,7 +57,7 @@ before_install:
   - export CC=${REAL_CC} CXX=${REAL_CXX}
   - wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz
   - mkdir afl-latest && tar -xzf afl-latest.tgz -C afl-latest
-  - cd afl-latest/*/ && make && make install && cd ../.. && ls -lta && pwd
+  - cd afl-latest/*/ && make && sudo make install && cd ../.. && ls -lta && pwd
 install:
   # Linux prerequisite steps 
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get -qq update -y; fi
