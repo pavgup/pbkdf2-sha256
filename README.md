@@ -1,4 +1,4 @@
-# pbkdf2-sha256 - [![Build Status](https://travis-ci.org/pavgup/pbkdf2-sha256.svg)](https://travis-ci.org/pavgup/pbkdf2-sha256)
+# pbkdf2-sha256 - [![Build Status](https://travis-ci.org/pavgup/pbkdf2-sha256.svg)](https://travis-ci.org/pavgup/pbkdf2-sha256) - [![Build Status](https://drone.io/github.com/pavgup/pbkdf2-sha256/status.png)](https://drone.io/github.com/pavgup/pbkdf2-sha256/latest)
 [![Join the chat at https://gitter.im/pavgup/pbkdf2-sha256](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pavgup/pbkdf2-sha256?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Ninja is a small build system with a focus on speed.
