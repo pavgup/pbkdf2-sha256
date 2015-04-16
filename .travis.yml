@@ -37,6 +37,8 @@ os:
 #  - osx
 language: cpp
 before_install:
+  # Finally make things completely noninteractive
+  - export DEBIAN_FRONTEND=noninteractive
   #new boost
   - sudo add-apt-repository --yes ppa:boost-latest/ppa
   #new GCC
