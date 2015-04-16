@@ -1,8 +1,17 @@
+script:
+  - sudo apt-get install re2c -y -qq
+  - sudo pip install cpp-coveralls
+  - CFLAGS=-coverage LDFLAGS=-coverage ./configure.py --debug
+  - ./ninja -t clean ninja_test && ./ninja ninja_test
+  - ./ninja_test
+  - gcov build/*.o   # for coverall-independent coverage
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp' # for coverall-dependent coverage
 notify:
+  email:
+    recipients:
+      - pg8p@virginia.edu
   webhook:
     urls:
       - https://webhooks.gitter.im/e/a79a70a6931ff1252344
     on_success: true
     on_failure: true
-Your unique webhook url for this service:
-
